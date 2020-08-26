@@ -32,72 +32,84 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void recoverApplication() {
-        String resourceName = "T" + mStoryIndex + "_";
-        int resId;
-
-        if (mStoryIndex > 3) {
-            resId = getResources().getIdentifier(resourceName + "End", "string", getPackageName());
-            mStoryTextView.setText(resId);
-            mButtonTop.setVisibility(View.INVISIBLE);
-            mButtonBottom.setVisibility(View.INVISIBLE);
+        if (mStoryIndex <= 3) {
+            loadChoice(mStoryIndex);
         } else {
-            resId = getResources().getIdentifier(resourceName + "Story", "string", getPackageName());
-            mStoryTextView.setText(resId);
-            resId = getResources().getIdentifier(resourceName + "Ans1", "string", getPackageName());
-            mButtonTop.setText(resId);
-            resId = getResources().getIdentifier(resourceName + "Ans2", "string", getPackageName());
-            mButtonBottom.setText(resId);
+            loadEnding(mStoryIndex);
         }
     }
 
     public void topButtonClicked(View view) {
         switch (mStoryIndex) {
             case 1:
-                mStoryTextView.setText(R.string.T3_Story);
-                mButtonTop.setText(R.string.T3_Ans1);
-                mButtonBottom.setText(R.string.T3_Ans2);
-                mStoryIndex = 3;
+                loadChoice(3);
                 break;
             case 2:
-                mStoryTextView.setText(R.string.T3_Story);
-                mButtonTop.setText(R.string.T3_Ans1);
-                mButtonBottom.setText(R.string.T3_Ans2);
-                mStoryIndex = 3;
+                loadChoice(3);
                 break;
             case 3:
-                mStoryTextView.setText(R.string.T6_End);
-                mButtonTop.setVisibility(View.INVISIBLE);
-                mButtonBottom.setVisibility(View.INVISIBLE);
-                mStoryIndex = 6;
+                loadEnding(6);
+                break;
         }
     }
 
     public void bottomButtonClicked(View view) {
         switch (mStoryIndex) {
             case 1:
+                loadChoice(2);
+                break;
+            case 2:
+                loadEnding(4);
+                break;
+            case 3:
+                loadEnding(5);
+                break;
+        }
+    }
+
+    private void loadChoice(int storyIndex) {
+        mStoryIndex = storyIndex;
+
+        switch (storyIndex) {
+            case 1:
+                mStoryTextView.setText(R.string.T1_Story);
+                mButtonTop.setText(R.string.T1_Ans1);
+                mButtonBottom.setText(R.string.T1_Ans2);
+                break;
+            case 2:
                 mStoryTextView.setText(R.string.T2_Story);
                 mButtonTop.setText(R.string.T2_Ans1);
                 mButtonBottom.setText(R.string.T2_Ans2);
-                mStoryIndex = 2;
-                break;
-            case 2:
-                mStoryTextView.setText(R.string.T4_End);
-                mButtonTop.setVisibility(View.INVISIBLE);
-                mButtonBottom.setVisibility(View.INVISIBLE);
-                mStoryIndex = 4;
                 break;
             case 3:
-                mStoryTextView.setText(R.string.T5_End);
-                mButtonTop.setVisibility(View.INVISIBLE);
-                mButtonBottom.setVisibility(View.INVISIBLE);
-                mStoryIndex = 5;
+                mStoryTextView.setText(R.string.T3_Story);
+                mButtonTop.setText(R.string.T3_Ans1);
+                mButtonBottom.setText(R.string.T3_Ans2);
+                break;
         }
+    }
+
+    private void loadEnding(int endingIndex) {
+        mStoryIndex = endingIndex;
+
+        switch (endingIndex) {
+            case 4:
+                mStoryTextView.setText(R.string.T4_End);
+                break;
+            case 5:
+                mStoryTextView.setText(R.string.T5_End);
+                break;
+            case 6:
+                mStoryTextView.setText(R.string.T6_End);
+                break;
+        }
+        mButtonTop.setVisibility(View.INVISIBLE);
+        mButtonBottom.setVisibility(View.INVISIBLE);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         outState.putInt("mStoryIndex", mStoryIndex);
     }
 }
