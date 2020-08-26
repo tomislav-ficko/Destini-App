@@ -34,9 +34,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void topButtonClicked(View view) {
+        switch (mStoryIndex) {
+            case 1:
+                mStoryTextView.setText(R.string.T3_Story);
+                mButtonTop.setText(R.string.T3_Ans1);
+                mButtonBottom.setText(R.string.T3_Ans2);
+                mStoryIndex = 3;
+                break;
+            case 2:
+                mStoryTextView.setText(R.string.T3_Story);
+                mButtonTop.setText(R.string.T3_Ans1);
+                mButtonBottom.setText(R.string.T3_Ans2);
+                mStoryIndex = 3;
+                break;
+            case 3:
+                mStoryTextView.setText(R.string.T6_End);
+                mButtonTop.setVisibility(View.INVISIBLE);
+                mButtonBottom.setVisibility(View.INVISIBLE);
+                mStoryIndex = 6;
+        }
     }
 
     public void bottomButtonClicked(View view) {
+        switch (mStoryIndex) {
+            case 1:
+                mStoryTextView.setText(R.string.T2_Story);
+                mButtonTop.setText(R.string.T2_Ans1);
+                mButtonBottom.setText(R.string.T2_Ans2);
+                mStoryIndex = 2;
+                break;
+            case 2:
+                mStoryTextView.setText(R.string.T4_End);
+                mButtonTop.setVisibility(View.INVISIBLE);
+                mButtonBottom.setVisibility(View.INVISIBLE);
+                mStoryIndex = 4;
+                break;
+            case 3:
+                mStoryTextView.setText(R.string.T5_End);
+                mButtonTop.setVisibility(View.INVISIBLE);
+                mButtonBottom.setVisibility(View.INVISIBLE);
+                mStoryIndex = 5;
+        }
     }
 
     @Override
@@ -44,8 +82,5 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         outState.putInt("mStoryIndex", mStoryIndex);
-        outState.putString("mStoryTextView", mStoryTextView.getText().toString());
-        outState.putString("mButtonTop", mButtonTop.getText().toString());
-        outState.putString("mButtonBottom", mButtonBottom.getText().toString());
     }
 }
