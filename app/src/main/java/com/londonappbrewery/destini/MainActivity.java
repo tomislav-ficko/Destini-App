@@ -27,9 +27,26 @@ public class MainActivity extends AppCompatActivity {
             mStoryIndex = 1;
         } else {
             mStoryIndex = savedInstanceState.getInt("mStoryIndex");
-            mStoryTextView.setText(savedInstanceState.getString("mStoryTextView"));
-            mButtonTop.setText(savedInstanceState.getString("mButtonTop"));
-            mButtonBottom.setText(savedInstanceState.getString("mButtonBottom"));
+            recoverApplication();
+        }
+    }
+
+    private void recoverApplication() {
+        String resourceName = "T" + mStoryIndex + "_";
+        int resId;
+
+        if (mStoryIndex > 3) {
+            resId = getResources().getIdentifier(resourceName + "End", "string", getPackageName());
+            mStoryTextView.setText(resId);
+            mButtonTop.setVisibility(View.INVISIBLE);
+            mButtonBottom.setVisibility(View.INVISIBLE);
+        } else {
+            resId = getResources().getIdentifier(resourceName + "Story", "string", getPackageName());
+            mStoryTextView.setText(resId);
+            resId = getResources().getIdentifier(resourceName + "Ans1", "string", getPackageName());
+            mButtonTop.setText(resId);
+            resId = getResources().getIdentifier(resourceName + "Ans2", "string", getPackageName());
+            mButtonBottom.setText(resId);
         }
     }
 
