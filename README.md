@@ -1,4 +1,4 @@
-# LAB-4-Destini-App
+# Destini Application
 Storytelling game, created as part of the Android Java course by London App Brewery
 <br>
 <br>
